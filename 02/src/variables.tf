@@ -3,17 +3,21 @@ variable "token" {
   type        = string
   description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
 }
-
 variable "cloud_id" {
   type        = string
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/cloud/get-id"
 }
-
 variable "folder_id" {
   type        = string
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
 }
 
+ ###Сеть
+variable "vpc_name" {
+  type        = string
+  default     = "develop"
+  description = "VPC network & subnet name"
+}
 variable "default_zone" {
   type        = string
   default     = "ru-central1-a"
@@ -25,32 +29,27 @@ variable "default_cidr" {
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
 }
 
-variable "vpc_name" {
-  type        = string
-  default     = "develop"
-  description = "VPC network & subnet name"
-}
-variable "vpc_db_name" {
-  type        = string
-  default     = "develop"
-  description = "VPC network & subnet name"
-}
-
 ###ssh vars
-
 variable "vms_ssh_root_key" {
   type        = string
   default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIcctq4cYZC5AZ0OF/5Du8i+h0zP4gwLe8/2gk2cTh66"
   description = "ssh-keygen -t ed25519"
 }
-  variable "vm_web_name" {
+ 
+
+  variable "vm_web_family" {
+  type        = string
+  default     = "ubuntu-2004-lts"
+  description = "family"
+}
+ variable "vm_web_name" {
   type        = string
   default     = "netology-develop-platform-web"
-  description = "name"
+  description = "web_name"
 }
-  variable "vm_web_platform" {
+  variable "vm_web_platform_id" {
   type        = string
-  default     = "standard-v1"
+  default     = "standard-v2"
   description = "platform_id"
 }
   variable "vm_web_cores" {
