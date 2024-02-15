@@ -69,7 +69,7 @@ variable "vms_ssh_root_key" {
 }
   variable "vm_web_image_id" {
   type        = string
-  default     = "data.yandex_compute_image.ubuntu.image_id"
+  default     = "data.yandex_compute_image.ubuntu-2004-lts.image_id"
   description = "image_id"
 }
   variable "vm_web_preemptible" {

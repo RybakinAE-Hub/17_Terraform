@@ -1,5 +1,5 @@
   ###Сеть
-  variable "vpc_db_name" {
+variable "vpc_db_name" {
   type        = string
   default     = "develop-db"
   description = "VPC network & subnet name"
@@ -15,11 +15,10 @@ variable "default_db_cidr" {
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
 }
 
-
-  variable "vm_db_name" {
+variable "vm_db_name" {
   type        = string
   default     = "netology-develop-platform-db"
-  description = "name"
+  description = "db_name"
 }
   variable "vm_db_cores" {
   type        = number
@@ -36,23 +35,8 @@ variable "default_db_cidr" {
   default     = "20"
   description = "core_fraction"
 }
-  variable "vm_db_image_id" {
-  type        = string
-  default     = "data.yandex_compute_image.ubuntu.image_id"
-  description = "image_id"
-}
-  variable "vm_db_preemptible" {
-  type        = bool
-  default     = "true"
-  description = "preemptible"
-}
   variable "vm_db_subnet" {
   type        = string
-  default     = "yandex_vpc_subnet.develop.id"
+  default     = "yandex_vpc_subnet.develop-db.id"
   description = "subnet_id"
-}
-  variable "vm_db_nat" {
-  type        = bool
-  default     = "true"
-  description = "nat"
 }
