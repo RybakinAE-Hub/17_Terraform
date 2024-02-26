@@ -1,21 +1,21 @@
 
-data "yandex_compute_image" "ubuntu-2004-lts" {
+data "yandex_compute_image" "ubuntu" {
   family = "ubuntu-2004-lts"
 }
 
   resource "yandex_compute_instance" "web" {
     name  = "web-${count.index+1}"
-    platform_id = "standart-v1"
-    count = 1
+    platform_id = "standard-v1"
+    count = 2
 
 resources {
     cores         = 2
     memory        = 1
-    core_fraction = 5
+    core_fraction = 10
   }
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.ubuntu-2004-lts.image_id
+      image_id = data.yandex_compute_image.ubuntu.image_id
     }
   }
   scheduling_policy {
