@@ -1,13 +1,12 @@
-resource "yandex_compute_instance" "db" {
-
-  depends_on = [ yandex_compute_instance.web ]
-  for_each = { for vm in local.vms_bav: "${vm.vm_name}" => vm }
-  name = each.key
+resource "yandex_compute_instance" "vm-for_each" {
+  depends_on = [yandex_compute_instance.web]
+  for_each = {for s, value in var.fore_each-WM-parametr : s => value }
+  name = each.value.name
   platform_id = "standard-v2"
   resources {
-        cores           = each.value.cpu
-        memory          = each.value.ram
-        core_fraction   = each.value.frac
+        cores           = each.value.cores
+        memory          = each.value.memory
+        core_fraction   = each.value.core_fraction
   }
 
   boot_disk {
@@ -22,22 +21,7 @@ resource "yandex_compute_instance" "db" {
 
   metadata = {
     serial-port-enable = 1
-    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+    ssh-keys           = "ubuntu:${local.ssh_key}"
+#    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
   } 
 }
-locals {
-  vms_bav = [
-        {
-        vm_name = "main"
-        cpu     = 4
-        ram     = 4
-        frac    = 20
-        },
-        {
-        vm_name = "replica"
-        cpu     = 2
-        ram     = 2
-        frac    = 5
-        }
-  ]
- }

@@ -4,14 +4,13 @@ data "yandex_compute_image" "ubuntu" {
 }
 
   resource "yandex_compute_instance" "web" {
-    name  = "web-${count.index+1}"
-    platform_id = "standard-v1"
     count = 2
-
-resources {
+    name  = "web-${count.index + 1}"
+    platform_id = "standard-v1"
+  resources {
     cores         = 2
     memory        = 1
-    core_fraction = 10
+    core_fraction = 20
   }
   boot_disk {
     initialize_params {
@@ -29,7 +28,8 @@ resources {
 
   metadata = {
     serial-port-enable = 1
-    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+    ssh-keys           = "ubuntu:${local.ssh_key}"
+#    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
   } 
   
 }
