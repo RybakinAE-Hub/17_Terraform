@@ -2,7 +2,6 @@
 data "yandex_compute_image" "ubuntu" {
   family = "ubuntu-2004-lts"
 }
-
   resource "yandex_compute_instance" "web" {
     count = 2
     name  = "web-${count.index + 1}"
@@ -29,7 +28,5 @@ data "yandex_compute_image" "ubuntu" {
   metadata = {
     serial-port-enable = 1
     ssh-keys           = "ubuntu:${local.ssh_key}"
-#    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
   } 
-  
 }
