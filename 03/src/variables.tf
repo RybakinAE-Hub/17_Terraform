@@ -40,7 +40,7 @@ variable "vms_ssh_root_key" {
   description = "ssh-keygen -t ed25519"
 }
 
-variable "fore_each-WM-parametr" {
+variable "fore_each-vm" {
   type = list(object({cores = number, name = string, memory=number, core_fraction=number},))
   default = [{name = "main", cores= 2, memory=2, core_fraction=5}, {name = "replica", cores= 2, memory= 1, core_fraction=5},]  
 }
